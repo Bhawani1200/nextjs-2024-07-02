@@ -1,10 +1,8 @@
-import React from 'react'
-import Table from './_components/Table'
-
+import React from "react";
+import ProductsTable from "./_components/Table";
 export default function ProductPage() {
-  return (
-    <div>
-    <Table/>
-    </div>
-  )
+  return <div className="container ">
+     <ProductsTable/>
+     </div>
+  
 }
