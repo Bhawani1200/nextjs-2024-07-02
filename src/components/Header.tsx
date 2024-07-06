@@ -16,6 +16,7 @@ const Header = () => {
         <div className="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
           LOGO
         </div>
+
         <nav className="flex items-center justify-center text-base md:ml-auto">
           {navLinks.map((navLink) => {
             const isActive =

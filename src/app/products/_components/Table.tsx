@@ -1,8 +1,16 @@
 import React from "react";
-import products from "../data";
 import Link from "next/link";
-
-const ProductsTable = () => {
+type Product = {
+  id: number;
+  name: string;
+  category: string;
+  brand: string;
+  price: number;
+};
+type productsTableType = {
+  products: Product[];
+};
+const ProductsTable = ({ products }: productsTableType) => {
   return (
     <table className="w-10/12 mx-auto mt-5 border rounded-2xl">
       <thead>
