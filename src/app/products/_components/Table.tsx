@@ -18,7 +18,7 @@ const ProductsTable = () => {
         {products.map((product) => (
           <tr key={product.id}>
             <td className="text-center px-3 py-1 hover:text-blue-500">
-              <Link href={`/product/${product.id}`}>{product.id}</Link>
+              <Link href={`/products/${product.id}`}>{product.id}</Link>
             </td>
             <td className="text-center px-3 py-1">{product.name}</td>
             <td className="text-center px-3 py-1">{product.category}</td>
