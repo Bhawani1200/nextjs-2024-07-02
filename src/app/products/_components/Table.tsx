@@ -6,7 +6,7 @@ type productsTableType = {
 };
 const ProductsTable = ({ products }: productsTableType) => {
   return (
-    <div className="w-10/12 mx-auto mt-5 px-4 border rounded-1xl">
+    <div className="w-10/12 mx-auto mt-9 px-4 border rounded-1xl">
       <table className="w-full">
         <thead>
           <tr>

@@ -1,14 +1,22 @@
 "use client";
-
 import navLinks from "@/constants/navlinks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Header = () => {
   const pathname = usePathname();
+  const router = useRouter();
 
-  const isAuthenticated = true;
+  const authToken = localStorage.getItem("authToken");
+
+  const isAuthenticated = authToken ? true : false;
+
+  const logout = () => {
+    localStorage.removeItem("authToken");
+    router.push("/login");
+  };
 
   return (
     <header className="w-full text-gray-700  shadow-sm body-font">
@@ -37,6 +45,14 @@ const Header = () => {
                 </Link>
               );
           })}
+          {isAuthenticated ? (
+            <button
+              onClick={logout}
+              className="bg-slate-700 rounded text-white px-3 py-1"
+            >
+              Logout
+            </button>
+          ) : null}
         </nav>
       </div>
     </header>
