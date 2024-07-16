@@ -17,7 +17,8 @@ export default async function ProductById(props: productByIdType) {
   // if (props.params.productId > 1000) {
   //   notFound();
   // }
-  const product = await getProductById(props.params.productId);
+  const response = await getProductById(props.params.productId);
+  const product = response.data;
   return (
     <div className="container mx-auto mt-15">
       <div className="flex justify-between py-12 mt-6 ">

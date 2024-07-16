@@ -9,9 +9,9 @@ const Header = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const authToken = localStorage.getItem("authToken");
+  // const authToken = localStorage.getItem("authToken");
 
-  const isAuthenticated = authToken ? true : false;
+  const isAuthenticated = true;
 
   const logout = () => {
     localStorage.removeItem("authToken");

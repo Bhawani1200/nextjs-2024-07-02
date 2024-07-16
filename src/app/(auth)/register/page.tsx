@@ -8,7 +8,7 @@ export default function Register() {
         Register
       </h1>
       <div className="flex justify-center">
-        <RegisterForm/>
+        <RegisterForm />
       </div>
       <div className="mt-5 text-center">
         Already have an account?
