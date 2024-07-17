@@ -16,7 +16,7 @@ export default async function ProductPage() {
           Add Product+
         </Link>
       </div>
-      <ProductsGrid products={products} />
+      <ProductsGrid />
       <ToastContainer/>
 
     </div>

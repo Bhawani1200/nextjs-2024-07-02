@@ -7,10 +7,8 @@
 //   const { errors } = formState;
 //   async function onSubmit(data: RegisterType) {
 //     try {
-      
-//       await login(data);
+//       await register(data);
 //     } catch (error) {
-      
 //     }
 //   }
 //   return (
