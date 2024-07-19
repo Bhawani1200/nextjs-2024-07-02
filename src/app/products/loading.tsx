@@ -15,6 +15,8 @@ export default function ProductsLoading() {
         <ProductLoadingCard />
         <ProductLoadingCard />
         <ProductLoadingCard />
+        <ProductLoadingCard />
+        <ProductLoadingCard />
       </div>
     </div>
   );

@@ -1,30 +1,27 @@
 "use client";
 import navLinks from "@/constants/navlinks";
+import { RootState } from "@/redux/store";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const pathname = usePathname();
   const router = useRouter();
-
-  // const authToken = localStorage.getItem("authToken");
-
-  const isAuthenticated = true;
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
   const logout = () => {
     localStorage.removeItem("authToken");
     router.push("/login");
   };
-
   return (
     <header className="w-full text-gray-700  shadow-sm body-font">
       <div className="container flex flex-col items-start p-6 mx-auto md:flex-row">
         <div className="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
           LOGO
         </div>
-
         <nav className="flex items-center justify-center text-base md:ml-auto">
           {navLinks.map((navLink) => {
             const isActive =
