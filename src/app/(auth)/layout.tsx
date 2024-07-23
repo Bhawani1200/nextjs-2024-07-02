@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
-const AuthLayout = ({
+const UnAuthLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -15,10 +15,10 @@ const AuthLayout = ({
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuthenticated) router.push("/login");
+    if (isAuthenticated) router.push("/");
   }, [isAuthenticated, router]);
 
   return <>{children}</>;
 };
 
-export default AuthLayout;
+export default UnAuthLayout;

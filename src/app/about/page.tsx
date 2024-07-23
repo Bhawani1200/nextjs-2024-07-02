@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import AuthLayout from "../layouts/AuthLayout";
 
 export const metadata = {
   title: "About page",
@@ -6,7 +7,9 @@ export const metadata = {
 export default function About() {
   return (
     <div>
-      <h1 className="text-center">This is about page</h1>
+      <AuthLayout>
+        <h1 className="text-center">This is about page</h1>
+      </AuthLayout>
     </div>
   );
 }

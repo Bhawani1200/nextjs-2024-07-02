@@ -17,7 +17,6 @@ const Header = () => {
 
   const logoutUser = () => {
     dispatch(logout());
-    router.push("/login");
   };
   return (
     <header className="w-full text-gray-700  shadow-sm body-font">

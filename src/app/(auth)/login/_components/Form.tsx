@@ -3,7 +3,6 @@ import { loginUser } from "@/redux/auth/authActions";
 import { AppDispatch, RootState } from "@/redux/store";
 import { LoginType } from "@/types/login";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 const LoginForm = () => {
@@ -17,13 +16,6 @@ const LoginForm = () => {
   async function onSubmit(data: LoginType) {
     dispatch(loginUser(data));
   }
-useEffect(() => {
-
-if(isAuthenticated){
-  router.push("/");
-}
-}, [isAuthenticated,router])
-
   return (
     <form className="w-1/2 mt-10" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-6">

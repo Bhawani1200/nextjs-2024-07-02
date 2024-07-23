@@ -1,38 +1,29 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
 import headphone from "../../../assests/image/headphone.webp";
 import { FaTrash } from "react-icons/fa";
-import { deleteProduct } from "@/api/product";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { removeProduct } from "@/redux/products/productActions";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/rootReducer";
 
 const ProductCard = ({ product }: { product: Product }) => {
   const router = useRouter();
-
-  if (!product?.name) throw new Error("Product not found!");
-
+  const dispatch = useDispatch<AppDispatch>();
+ 
   function onClick(id?: string) {
     router.push(`/products/${id}`);
   }
   async function onDeleteProduct(id?: string) {
-    try {
-      await deleteProduct(product.id);
-      toast("Product deleted successfully.", {
-        autoClose: 1500,
-        type: "success",
-      });
-      router.refresh();
-    } catch (error) {
-      console.log(error);
-      toast(error?.response.message, {
-        autoClose: 1500,
-        type: "error",
-      });
-    }
+    dispatch(removeProduct(id));
   }
+  
+  if (!product?.name) throw new Error("Product not found");
   return (
     <div className="py-5 h-full border border-dashed border-gray-800">
       <div className="flex justify-center mb-5">
@@ -45,13 +36,13 @@ const ProductCard = ({ product }: { product: Product }) => {
       <div className="flex justify-around items-center mt-3">
         <button
           className="bg-black text-white px-3 py-1"
-          onClick={() => onClick(product.id)}
+          onClick={() => onClick(product?.id)}
         >
           Buy Now
         </button>
         <button
           className="bg-red-600 text-white ml-3 rounded p-2"
-          onClick={() => onDeleteProduct(product.id)}
+          onClick={() => onDeleteProduct(product.id ?? "")}
         >
           <FaTrash />
         </button>
@@ -61,3 +52,6 @@ const ProductCard = ({ product }: { product: Product }) => {
 };
 
 export default ProductCard;
+// function dispatch(arg0: unknown) {
+//   throw new Error("Function not implemented.");
+// }

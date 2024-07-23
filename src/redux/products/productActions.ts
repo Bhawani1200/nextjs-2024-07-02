@@ -1,5 +1,5 @@
-import { getALlProducts } from "@/api/product";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { deleteProduct, getALlProducts } from "@/api/product";
+import { createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 
 const getAll = createAsyncThunk(
@@ -9,9 +9,21 @@ const getAll = createAsyncThunk(
       const response = await getALlProducts();
       return response.data;
     } catch (error) {
-      const axiosError=error as AxiosError;
+      const axiosError = error as AxiosError;
       return rejectWithValue(axiosError.response?.data);
     }
   }
 );
-export { getAll };
+const removeProduct = createAsyncThunk(
+  "products/remove",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const response = await deleteProduct(id);
+      return response?.data;
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      return rejectWithValue(axiosError.response?.data);
+    }
+  }
+);
+export { getAll, removeProduct };

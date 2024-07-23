@@ -5,16 +5,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAll } from "@/redux/products/productActions";
 import { AppDispatch, RootState } from "@/redux/store";
 import ProductsLoading from "../loading";
+import { toast } from "react-toastify";
+import { resetDeleteSuccess } from "@/redux/products/productSlice";
 export default function ProductsGrid() {
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error, products } = useSelector(
+  const { loading, error, products,deleteSuccess } = useSelector(
     (state: RootState) => state.product
   );
   useEffect(() => {
     dispatch(getAll());
-  }, [dispatch]);
+  }, [dispatch,deleteSuccess]);
   if (loading) <ProductsLoading />;
   if (error) throw new Error(error);
+  useEffect(() => {
+    if (error) {
+      toast.error(error, { autoClose: 1400 });
+    }
+    if (deleteSuccess) {
+      toast.success("Product deleted successfully", {
+        autoClose: 1500,
+        onClose:()=>dispatch(resetDeleteSuccess()),
+      });
+    }
+  }, [error, deleteSuccess,dispatch]);
+
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-4 grid-cols-4 gap-8 ">
       {products.map((product) => (
