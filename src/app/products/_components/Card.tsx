@@ -5,13 +5,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import headphone from "../../../assests/image/headphone.webp";
 import { FaTrash } from "react-icons/fa";
-import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { removeProduct } from "@/redux/products/productActions";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/rootReducer";
-
 const ProductCard = ({ product }: { product: Product }) => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
