@@ -11,14 +11,14 @@ import { removeProduct } from "@/redux/products/productActions";
 const ProductCard = ({ product }: { product: Product }) => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
- 
+
   function onClick(id?: string) {
     router.push(`/products/${id}`);
   }
   async function onDeleteProduct(id?: string) {
     dispatch(removeProduct(id));
   }
-  
+
   if (!product?.name) throw new Error("Product not found");
   return (
     <div className="py-5 h-full border border-dashed border-gray-800">

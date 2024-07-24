@@ -11,7 +11,7 @@ const LoginForm = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   const router=useRouter();
-  const { loading, error ,isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { loading, error  } = useSelector((state: RootState) => state.auth);
 
   async function onSubmit(data: LoginType) {
     dispatch(loginUser(data));

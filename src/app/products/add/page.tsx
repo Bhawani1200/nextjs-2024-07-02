@@ -1,6 +1,7 @@
 import React from 'react'
-import AddProductForm from './_components/Form'
+
 import { ToastContainer } from 'react-toastify'
+import AddProductForm from './_components/Form'
 
 export default function AddProduct() {
   return (
