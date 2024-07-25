@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -7,16 +7,21 @@ import headphone from "../../../assests/image/headphone.webp";
 import { FaTrash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
+import Modal from "@/components/Modal";
 import { removeProduct } from "@/redux/products/productActions";
 const ProductCard = ({ product }: { product: Product }) => {
+  const [IsOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
 
   function onClick(id?: string) {
     router.push(`/products/${id}`);
   }
-  async function onDeleteProduct(id?: string) {
-    dispatch(removeProduct(id));
+  async function onDeleteProduct() {
+    setIsOpen(true);
+  }
+  function confirmDelete() {
+    dispatch(removeProduct(product.id ?? ""));
   }
 
   if (!product?.name) throw new Error("Product not found");
@@ -38,16 +43,35 @@ const ProductCard = ({ product }: { product: Product }) => {
         </button>
         <button
           className="bg-red-600 text-white ml-3 rounded p-2"
-          onClick={() => onDeleteProduct(product.id ?? "")}
+          onClick={onDeleteProduct}
         >
           <FaTrash />
         </button>
+        <Modal
+          title="Are you sure?"
+          content={`You want to delete ${product?.name} ?`}
+          IsOpen={IsOpen}
+          setIsOpen={setIsOpen}
+          actions={
+            <>
+              <button
+                className="rounded px-3 py-1 bg-red-500 text-white"
+                onClick={() => setIsOpen(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="rounded px-3 py-1 bg-red-500 text-white"
+                onClick={confirmDelete}
+              >
+                Delete
+              </button>
+            </>
+          }
+        />
       </div>
     </div>
   );
 };
 
 export default ProductCard;
-// function dispatch(arg0: unknown) {
-//   throw new Error("Function not implemented.");
-// }
