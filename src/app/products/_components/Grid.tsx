@@ -9,12 +9,12 @@ import { toast } from "react-toastify";
 import { resetDeleteSuccess } from "@/redux/products/productSlice";
 export default function ProductsGrid() {
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error, products,deleteSuccess } = useSelector(
+  const { loading, error, products,deleteSuccess,query } = useSelector(
     (state: RootState) => state.product
   );
   useEffect(() => {
-    dispatch(getAll());
-  }, [dispatch,deleteSuccess]);
+    dispatch(getAll(query));
+  }, [dispatch,deleteSuccess,query]);
   if (loading) <ProductsLoading />;
   if (error) throw new Error(error);
   useEffect(() => {

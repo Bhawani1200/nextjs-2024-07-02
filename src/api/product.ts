@@ -1,8 +1,16 @@
 import config from "@/config";
-import { Product } from "@/types/product";
-import axios, { AxiosError, AxiosResponse } from "axios";
-const getALlProducts = async () => {
-  const products = await axios.get(`${config.apiUrl}/api/products?limit=50`);
+import { Product, ProductsQuery } from "@/types/product";
+import axios from "axios";
+const getALlProducts = async ({
+  limit = "10",
+  sort = JSON.stringify({ createdAt: -1 }),
+  filters: {},
+}: ProductsQuery) => {
+  const products = await axios.get(
+    `${config.apiUrl}/api/products?limit=${
+      limit ?? 10
+    }&sort=${sort}&filters=${JSON.stringify(filters)}`
+  );
   return products;
 };
 const getProductById = async (id: string) => {
