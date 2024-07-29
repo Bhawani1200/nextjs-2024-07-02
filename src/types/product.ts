@@ -1,14 +1,15 @@
 export type Product = {
-  id?: number;
+  id?: string;
   name: string;
-  category: string;
   brand: string;
+  category: string;
   price: number;
 };
+
 export type ProductsQuery = {
   limit?: string;
   sort?: string;
-  filters?:{
-    [key:string]:string;
-  }
+  filters?: {
+    [key: string]: string;
+  };
 };

@@ -17,21 +17,22 @@ export default function ProductsFilter() {
   }
   function filterByName(value: string) {
     if (value) {
-      dispatch(setFilters({ value: name }));
+      dispatch(setFilters({ name: value }));
     } else {
       dispatch(setFilters({}));
     }
   }
   function filterByCategory(value: string) {
     if (value) {
-      dispatch(setFilters({ value: name }));
+      dispatch(setFilters({ category: value }));
     } else {
       dispatch(setFilters({}));
     }
   }
+
   return (
     <div className="py-5 my-5 border border-dashed rounded flex justify-start">
-      <div className="mx-4">
+      <div className="mx-2">
         <label htmlFor="limit">Limit:</label>
         <select
           name="limit"
@@ -45,7 +46,7 @@ export default function ProductsFilter() {
           <option value="100">100</option>
         </select>
       </div>
-      <div className="mx-4">
+      <div className="mx-2">
         <label htmlFor="limit">Sort By:</label>
         <select
           name="sort"
@@ -64,22 +65,22 @@ export default function ProductsFilter() {
       <div className="mx-4">
         <label htmlFor="filterByName">Name:</label>
         <input
-          name="text"
+          type="text"
           id="filterByName"
+          className="ml-3 border px-1"
           value={query.filters?.name}
-          className="ml-3 border"
           onChange={(e) => filterByName(e.target.value)}
-        ></input>
+        />
       </div>
-      <div className="mx-2">
+      <div className="mx-4">
         <label htmlFor="filterByCategory">Category:</label>
         <input
-          name="text"
+          type="text"
           id="filterByCategory"
+          className="ml-3 border px-1"
           value={query.filters?.category}
-          className="ml-3 border"
           onChange={(e) => filterByCategory(e.target.value)}
-        ></input>
+        />
       </div>
     </div>
   );

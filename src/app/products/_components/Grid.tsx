@@ -9,12 +9,12 @@ import { toast } from "react-toastify";
 import { resetDeleteSuccess } from "@/redux/products/productSlice";
 export default function ProductsGrid() {
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error, products,deleteSuccess,query } = useSelector(
+  const { loading, error, products, deleteSuccess, query } = useSelector(
     (state: RootState) => state.product
   );
   useEffect(() => {
     dispatch(getAll(query));
-  }, [dispatch,deleteSuccess,query]);
+  }, [dispatch, deleteSuccess, query]);
   if (loading) <ProductsLoading />;
   if (error) throw new Error(error);
   useEffect(() => {
@@ -24,10 +24,10 @@ export default function ProductsGrid() {
     if (deleteSuccess) {
       toast.success("Product deleted successfully", {
         autoClose: 1500,
-        onClose:()=>dispatch(resetDeleteSuccess()),
+        onClose: () => dispatch(resetDeleteSuccess()),
       });
     }
-  }, [error, deleteSuccess,dispatch]);
+  }, [error, deleteSuccess, dispatch]);
 
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-4 grid-cols-4 gap-8 ">

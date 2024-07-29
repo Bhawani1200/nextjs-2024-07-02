@@ -4,13 +4,14 @@ import axios from "axios";
 const getALlProducts = async ({
   limit = "10",
   sort = JSON.stringify({ createdAt: -1 }),
-  filters: {},
+  filters = {},
 }: ProductsQuery) => {
-  const products = await axios.get(
-    `${config.apiUrl}/api/products?limit=${
-      limit ?? 10
-    }&sort=${sort}&filters=${JSON.stringify(filters)}`
-  );
+  const query = `limit=${limit}&sort=${sort}&filters=${JSON.stringify(
+    filters
+  )}`;
+
+  const products = await axios.get(`${config.apiUrl}/api/products?${query}`);
+
   return products;
 };
 const getProductById = async (id: string) => {
