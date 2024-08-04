@@ -20,7 +20,7 @@ const ProductCard = ({ product }: { product: Product }) => {
   async function onDeleteProduct() {
     setIsOpen(true);
   }
-  function confirmDelete() {
+  function onConfirmDelete() {
     dispatch(removeProduct(product.id ?? ""));
   }
 
@@ -62,7 +62,7 @@ const ProductCard = ({ product }: { product: Product }) => {
               </button>
               <button
                 className="rounded px-3 py-1 bg-red-500 text-white"
-                onClick={confirmDelete}
+                onClick={onConfirmDelete}
               >
                 Delete
               </button>

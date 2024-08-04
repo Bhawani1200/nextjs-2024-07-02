@@ -8,7 +8,6 @@ export default function Home() {
       <h1 className="text-center text-slate-600 text-3xl font-semibold mt-8">
         <AuthLayout>
           <Hero />
-       
         </AuthLayout>
       </h1>
       ;
