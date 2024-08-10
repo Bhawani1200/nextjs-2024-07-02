@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-
+import { FaShopify } from "react-icons/fa6";
 const Header = () => {
   const pathname = usePathname();
   const router = useRouter();
@@ -19,10 +19,10 @@ const Header = () => {
     dispatch(logout());
   };
   return (
-    <header className="w-full text-gray-700  shadow-sm body-font">
+    <header className="w-full text-gray-700  shadow-sm body-font sticky top-0">
       <div className="container flex flex-col items-start p-6 mx-auto md:flex-row">
         <div className="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
-          LOGO
+        <FaShopify size={36}/>Shop Me
         </div>
         <nav className="flex items-center justify-center text-base md:ml-auto">
           {navLinks.map((navLink) => {
